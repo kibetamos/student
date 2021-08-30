@@ -26,3 +26,15 @@ def add_student(request):
             stu.save()
         return redirect('home')
     return render(request, "add-student.html", {'stu':stu})
+
+def edit_student(request, pk):
+    stu = get_object_or_404(stu, pk=pk)
+    if request.method == 'POST':
+        stu = studentformorm(request.POST, instance=stu)
+        if stu.is_valid():
+            stu.save()
+        return redirect('home')
+    return render(request, "edit-student.html", {'stu': stu})
+
+
+
