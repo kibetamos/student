@@ -1,3 +1,4 @@
+import studentinfo
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
@@ -27,14 +28,14 @@ def add_student(request):
         return redirect('home')
     return render(request, "add-student.html", {'stu':stu})
 
-def edit_student(request, pk):
-    stu = get_object_or_404(stu, pk=pk)
-    if request.method == 'POST':
-        stu = studentformorm(request.POST, instance=stu)
+def edit_student(request):
+    stu= studentform()
+    if request.method=='POST':
+        stu=studentform(request.POST, request.FILES)
         if stu.is_valid():
             stu.save()
         return redirect('home')
-    return render(request, "edit-student.html", {'stu': stu})
+    return render(request, "edit-student.html", {'stu':stu})
 
 
 
