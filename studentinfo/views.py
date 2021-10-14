@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
 from .forms import *
+
+
 # Create your views here.
 
 def home(request):
@@ -16,26 +18,25 @@ def home(request):
     except EmptyPage:
         studs = paginator.page(paginator.num_pages)
 
-    context = {'stu':stu, 'studs':studs}
+    context = {'stu': stu, 'studs': studs}
     return render(request, 'index.html', context)
 
+
 def add_student(request):
-    stu= studentform()
-    if request.method=='POST':
-        stu=studentform(request.POST, request.FILES)
+    stu = studentform()
+    if request.method == 'POST':
+        stu = studentform(request.POST, request.FILES)
         if stu.is_valid():
             stu.save()
         return redirect('home')
-    return render(request, "add-student.html", {'stu':stu})
+    return render(request, "add-student.html", {'stu': stu})
 
-def edit_student(request):
-    stu= studentform()
-    if request.method=='POST':
-        stu=studentform(request.POST, request.FILES)
+
+def edit_student(request, id):
+    stu = studentform()
+    if request.method == 'POST':
+        stu = studentform(request.POST, request.FILES)
         if stu.is_valid():
             stu.save()
         return redirect('home')
-    return render(request, "edit-student.html", {'stu':stu})
-
-
-
+    return render(request, "edit-student.html", {'stu': stu})

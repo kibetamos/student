@@ -51,15 +51,17 @@
       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demo{{i.id}}">
 <i class="fa fa-eye" aria-hidden="true"></i> View Details
 </button></td>
-<div class="col-lg-6 mt-5 mb-5">
-  <a href="{% url 'edit' %}" class="btn btn-primary">Edit Student</a>
-  </div>
+<td>
+  
+    <a href="{% url 'edit' %}" class="btn btn-primary">Edit Student</a>
+    
+</td>
       {% comment %} <td> <a href=""> </a></td> {% endcomment %}
 <div class="modal" id="demo{{i.id}}">
   <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header">
-        <h4 class="modal-title"> {{i.name}} Information</h4>
+<!--        <h4 class="modal-title"> {{i.name}} Information</h4>-->
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 <div class="modal-body">
