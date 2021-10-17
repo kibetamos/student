@@ -29,14 +29,10 @@ def add_student(request):
         if stu.is_valid():
             stu.save()
         return redirect('home')
-    return render(request, "add-student.html", {'stu': stu})
+    return render(request, 'add-student.html', {'stu': stu})
 
 
 def edit_student(request, id):
-    stu = studentform()
-    if request.method == 'POST':
-        stu = studentform(request.POST, request.FILES)
-        if stu.is_valid():
-            stu.save()
-        return redirect('home')
-    return render(request, "edit-student.html", {'stu': stu})
+    stu = Student.objects.get(pk=id)
+
+    return render(request, 'edit-student.html', {'stu': stu})
