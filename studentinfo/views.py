@@ -31,8 +31,7 @@ def add_student(request):
         return redirect('home')
     return render(request, 'add-student.html', {'stu': stu})
 
-
-def edit_student(request, id):
-    stu = Student.objects.get(pk=id)
-
+def edit_student(request, pk):
+    stu = student.objects.all().order_by('-enrolled')
+    stu = Student.objects.get(id=pk)
     return render(request, 'edit-student.html', {'stu': stu})
